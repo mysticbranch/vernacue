@@ -22,14 +22,16 @@ separately tracked below.
 - E pause/resume and automatic cue-end pause on real playable silent media.
 - Synthetic HTTP 401 and 429 surface errors without retries; altered-source
   breakdowns are rejected through the worker. A delayed response cannot restore
-  the study overlay after Stop. The full local fixture suite passes 31 checks.
+  the study overlay after Stop.
 - Synthetic HTTP responses exercised through Groq, OpenAI, Gemini, and OpenRouter
   background adapters. No real provider account or key was used.
 - Content-script attempts to read key storage or administer keys rejected.
+- Popup initialization, accessible controls, and target-language persistence
+  verified, including ordering against the recent-language storage write.
 - Typing Q/E does not trigger shortcuts; unrelated keys do not dismiss study.
 - Stop removes the overlay; no uncaught page exceptions in the fixture run.
 - Axe scans with WCAG 2 A/AA, 2.1 AA, and 2.2 AA tags found no violations on
-  Learning, Profiles, Appearance, AI connection, and the study dialog.
+  Learning, Profiles, Appearance, AI connection, the study dialog, and the popup.
 - Screenshots of normal/narrow settings and the study overlay inspected.
 
 ### Test harness limitation

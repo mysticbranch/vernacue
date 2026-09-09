@@ -17,7 +17,14 @@ await build({
   minify: false,
   legalComments: 'eof',
 });
-for (const file of ['manifest.json', 'popup.html', 'options.html', 'ui.css'])
+for (const file of [
+  'manifest.json',
+  'popup.html',
+  'options.html',
+  'ui.css',
+  'LICENSE',
+  'PRIVACY.md',
+])
   await copyFile(file, `dist/${file}`);
 // Original geometric V mark. Generate PNGs without downloaded assets or dependencies.
 function crc32(buf) {

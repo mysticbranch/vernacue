@@ -442,6 +442,19 @@ try {
     'late response after Stop cannot resurrect study UI',
     (await page.locator('[data-vernacue]').count()) === 0,
   );
+  const popup = await context.newPage();
+  await popup.goto(`chrome-extension://${extensionId}/popup.html`);
+  await popup.getByRole('button', { name: 'Start studying', exact: true }).waitFor();
+  check('popup initializes with its study controls', true);
+  await aiAudit(popup, 'popup');
+  await popup.getByLabel('Translate to', { exact: true }).click();
+  await popup.getByRole('searchbox', { name: 'Search languages' }).fill('Spanish');
+  await popup.getByRole('button', { name: 'Spanish · español', exact: true }).click();
+  await popup.waitForFunction(async () => {
+    const r = await chrome.runtime.sendMessage({ type: 'settings:get' });
+    return r.data.settings.target === 'es';
+  });
+  check('popup language save does not race recent-language storage', true);
   check('no uncaught page exceptions', errors.length === 0);
   await writeFile(
     'test-results/browser-results.json',
