@@ -354,6 +354,16 @@ try {
   await page.getByRole('button', { name: 'Explain Guten', exact: true }).waitFor();
   await page.getByRole('button', { name: 'Explain Hello', exact: true }).waitFor();
   check('translation displayed in the overlay', true);
+  const beforeSynthetic = calls;
+  await page.evaluate(() => {
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'q', bubbles: true }));
+    document.querySelector('[data-vernacue]').shadowRoot.querySelector('[data-word]').click();
+  });
+  await page.waitForTimeout(150);
+  check(
+    'host-page synthetic clicks and keystrokes cannot trigger paid study actions',
+    calls === beforeSynthetic && (await page.getByRole('dialog').count()) === 0,
+  );
   await page.screenshot({ path: 'test-results/video-translation.png' });
   await page.getByLabel('Search', { exact: true }).fill('qe');
   check('typing Q/E does not open study dialog', (await page.getByRole('dialog').count()) === 0);

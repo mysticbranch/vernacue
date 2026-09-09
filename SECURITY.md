@@ -16,6 +16,8 @@ with synthetic data, and likely impact. Never submit a real API key.
 ## Security boundaries
 
 - Bundled code only; Manifest V3 CSP forbids remote executable scripts.
+- Host-page synthetic clicks, changes, and Q/E keystrokes cannot impersonate
+  user interaction to request explanations or enable paid translation.
 - AI output is untrusted and rendered with text nodes, not HTML or Markdown HTML.
 - Breakdown chunks must reconstruct the exact requested subtitle; malformed,
   oversized, or altered responses are rejected.
