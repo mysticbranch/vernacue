@@ -26,6 +26,20 @@ export class Overlay {
   ) {
     this.host.dataset.vernacue = 'true';
     this.shadow = this.host.attachShadow({ mode: 'open' });
+    // The host page can see this DOM, but cannot impersonate user interaction
+    // to turn on paid features or request explanations.
+    for (const type of ['click', 'change', 'input']) {
+      this.shadow.addEventListener(
+        type,
+        (event) => {
+          if (!event.isTrusted) {
+            event.preventDefault();
+            event.stopImmediatePropagation();
+          }
+        },
+        { capture: true },
+      );
+    }
     const style = el('style');
     style.textContent =
       base +

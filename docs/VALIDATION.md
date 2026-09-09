@@ -26,6 +26,7 @@ separately tracked below.
 - Synthetic HTTP responses exercised through Groq, OpenAI, Gemini, and OpenRouter
   background adapters. No real provider account or key was used.
 - Content-script attempts to read key storage or administer keys rejected.
+- Host-page synthetic word clicks and Q events cannot initiate paid study actions.
 - Popup initialization, accessible controls, and target-language persistence
   verified, including ordering against the recent-language storage write.
 - Typing Q/E does not trigger shortcuts; unrelated keys do not dismiss study.

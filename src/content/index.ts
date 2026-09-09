@@ -432,6 +432,7 @@ function openMore() {
 document.addEventListener(
   'keydown',
   (e) => {
+    if (!e.isTrusted) return;
     if (
       !active ||
       !settings.shortcuts ||
