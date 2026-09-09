@@ -1,0 +1,23 @@
+name: Bug report
+description: Report a reproducible problem without sharing credentials.
+body:
+  - type: markdown
+    attributes:
+      value: Never include API keys, authorization headers, signed caption URLs, or private subtitle text. Report security issues privately via SECURITY.md.
+  - type: input
+    id: environment
+    attributes:
+      label: Extension version, Chrome version, operating system
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps, expected result, actual result
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Safe evidence
+      description: Public video link, language/track, provider/model, redacted error or screenshot. No keys.
