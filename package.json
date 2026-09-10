@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@axe-core/playwright": "^4.10.2",
-    "@types/chrome": "^0.0.326",
+    "@types/chrome": "^0.2.9",
     "@types/node": "^22.15.0",
     "esbuild": "^0.25.5",
     "playwright": "^1.58.2",
