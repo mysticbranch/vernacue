@@ -52,7 +52,7 @@ for (const size of [16, 32, 48, 128]) {
       const stroke =
         v > 0.22 && v < 0.78 && Math.abs(Math.abs(u - 0.5) - (0.78 - v) * 0.42) < 0.065;
       const i = y * (size * 4 + 1) + 1 + x * 4;
-      raw.set(stroke ? [250, 249, 243, 255] : [28, 80, 67, 255], i);
+      raw.set(stroke ? [239, 245, 253, 255] : [36, 91, 176, 255], i);
     }
   const header = Buffer.alloc(13);
   header.writeUInt32BE(size);

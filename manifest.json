@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Vernacue",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "minimum_chrome_version": "120",
   "description": "Study YouTube subtitles: translate, break down sentences and explain words using your own AI provider.",
   "permissions": ["storage", "scripting", "webRequest"],

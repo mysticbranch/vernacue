@@ -1,6 +1,6 @@
 {
   "name": "vernacue",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "type": "module",
   "description": "Subtitle-driven language learning in the browser",
@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit",
     "test": "tsx --test tests/*.test.ts",
     "test:browser": "npm run build && node tests/browser.mjs",
+    "test:popup": "npm run build && node tests/native-popup.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "check": "npm run format:check && npm run typecheck && npm test && npm run build",

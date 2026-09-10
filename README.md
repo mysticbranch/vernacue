@@ -10,7 +10,7 @@ Internet access is needed for YouTube and AI requests.
 
 ## First version
 
-**0.1.0 is a prerelease, not yet fully live-qualified.** Automated browser
+**0.1.1 is a prerelease, not yet fully live-qualified.** Automated browser
 fixtures pass, but clean-browser live probes received empty caption responses
 from YouTube, including its own player. Real provider keys and native permission
 prompts still require manual qualification. See [validation](docs/VALIDATION.md).
@@ -35,7 +35,7 @@ prompts still require manual qualification. See [validation](docs/VALIDATION.md)
 
 ## Install
 
-1. Download `vernacue-0.1.0.zip` from [Releases](https://github.com/mysticbranch/vernacue/releases)
+1. Download `vernacue-0.1.1.zip` from [Releases](https://github.com/mysticbranch/vernacue/releases)
    when available, and extract it into a permanent folder.
 2. Open `chrome://extensions` in Chrome, enable **Developer mode**, select
    **Load unpacked**, and choose the extracted folder containing `manifest.json`.
@@ -52,6 +52,21 @@ npm run build
 
 Load the generated `dist/` folder. Node is needed only for development/building,
 not while using the extension. This version is not a Chrome Web Store install.
+
+### Updating from 0.1.0
+
+The 0.1.1 update fixes the toolbar popup sizing and introduces a light-blue/navy
+interface. Export your profiles as a precaution. Extract the new ZIP into the
+**same folder you originally loaded**, replacing the old extension files, then
+click **Reload** for Vernacue in `chrome://extensions` and reload YouTube tabs.
+Do not remove/reinstall the extension or load a second copy in another folder;
+Chrome may assign a different extension ID and separate storage. Existing
+profiles, remembered keys, and custom subtitle colors are preserved when the
+same extension is reloaded. Session-only keys may need to be entered again.
+
+For a pale-blue interface regardless of your system theme, choose
+**Settings → Appearance → Interface theme → Light**. Explicit Dark/System
+preferences are retained; both themes use the new blue palette.
 
 ## Connect AI
 
@@ -119,6 +134,7 @@ npm ci
 npm run check          # strict types, unit tests, production extension build
 npx playwright install chromium
 npm run test:browser   # actual extension contexts; synthetic video/provider fixtures
+npm run test:popup     # actual Chrome toolbar popup sizing, scrolling, keyboard focus
 npm run package        # ZIP and SHA-256 under artifacts/
 ```
 

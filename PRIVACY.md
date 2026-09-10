@@ -1,6 +1,6 @@
 # Privacy
 
-Vernacue 0.1.0 has no developer-operated backend, analytics, advertising,
+Vernacue 0.1.x has no developer-operated backend, analytics, advertising,
 tracking SDK, or cloud synchronization. It does not require a Vernacue account.
 
 ## Where data goes
