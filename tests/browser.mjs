@@ -354,6 +354,18 @@ try {
   await page.getByRole('button', { name: 'Explain Guten', exact: true }).waitFor();
   await page.getByRole('button', { name: 'Explain Hello', exact: true }).waitFor();
   check('translation displayed in the overlay', true);
+  await page.getByRole('button', { name: 'Explain Guten', exact: true }).hover();
+  check(
+    'word hover preserves custom subtitle background contrast',
+    await page
+      .getByRole('button', { name: 'Explain Guten', exact: true })
+      .evaluate(
+        (word) =>
+          getComputedStyle(word).backgroundColor === 'rgba(0, 0, 0, 0)' &&
+          getComputedStyle(word).color === 'rgb(255, 255, 255)',
+      ),
+  );
+  await page.mouse.move(0, 0);
   const beforeSynthetic = calls;
   await page.evaluate(() => {
     document.dispatchEvent(new KeyboardEvent('keydown', { key: 'q', bubbles: true }));

@@ -49,7 +49,7 @@ export class Overlay {
       .subtitle-line { overflow-wrap:anywhere; unicode-bidi:plaintext; } .translation { margin-top:7px; } .cue-note { font:13px/1.4 system-ui,sans-serif; padding:4px; }
       .toolbar { display:flex; justify-content:center; flex-wrap:wrap; gap:6px; margin-top:8px; } .toolbar button { font:14px/1.4 system-ui,sans-serif; min-height:36px; padding:5px 10px; }
       .word { font:inherit; line-height:inherit; color:inherit; background:none; border:0; border-radius:2px; min-height:0; padding:0; margin:0; }
-      .word:hover { text-decoration:underline; } .word:focus-visible { outline:2px solid #76baff; outline-offset:2px; }
+      .word:hover { text-decoration:underline; background:transparent; border-color:transparent; } .word:focus-visible { outline:2px solid #76baff; outline-offset:2px; }
       .study-source { white-space:pre-wrap; font-size:20px; line-height:1.6; } .chunk { border-bottom:1px solid var(--line); padding:12px 0; } .chunk .source { white-space:pre-wrap; font-size:19px; margin:0 0 6px; }
       .study-footer { display:flex; flex-wrap:wrap; gap:8px; margin-top:20px; } .subtitle-box:empty { display:none; }
       @media (max-height:500px) { .subtitle-box { bottom:44px; max-height:65%; } }
