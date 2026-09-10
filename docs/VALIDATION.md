@@ -1,6 +1,27 @@
 # Validation and release status
 
-## 0.1.0: prerelease
+## 0.1.1: prerelease
+
+### Popup regression and visual update
+
+The 0.1.0 popup was tested as a tab, which missed Chrome's toolbar auto-sizing.
+A native `chrome.action.openPopup()` probe reproduced a 168 × 498 px collapsed
+layout instead of the intended 360 px width. The title stacked vertically and
+controls were clipped. The root had no explicit size while an inner element used
+`max-width: 100vw`, coupling its preferred size to Chrome's sizing viewport.
+
+The 0.1.1 root uses an independent 392 px width and a height chosen from available
+screen space (360–588 px). Only the inner workspace scrolls. Native popup tests
+sample dimensions over time, open the language picker with real input, and verify
+Escape focus restoration. Both short-screen headless and desktop headed runs are
+checked locally. This fixes the reproduced layout failure; user-specific causes
+of flickering outside this path may require additional diagnostics.
+
+The blue redesign is checked with light/dark accessibility scans, narrow settings
+layouts, screenshots, and a regression preserving saved themes/custom appearance.
+No new runtime dependencies, remote fonts, permissions, or provider behavior were added.
+
+## Continuing live-qualification limits
 
 Do not interpret the existence of a ZIP as proof of full live compatibility.
 The code implements the first browser-only feature set. Automated tests cover
@@ -10,7 +31,7 @@ separately tracked below.
 ### Completed locally
 
 - Strict TypeScript check and extension build.
-- 23 unit tests: caption parsing/timing/merging, language search/segmentation,
+- Unit tests: caption parsing/timing/merging, language search/segmentation,
   script-sensitive track selection, normalized settings, secret-free export,
   profile state, URL boundaries, prompts, exact reconstruction, response
   validation, four provider transports, cache identity.
@@ -88,6 +109,7 @@ npm ci
 npm run check
 npx playwright install chromium
 npm run test:browser
+npm run test:popup
 node tests/live-youtube.mjs
 ```
 

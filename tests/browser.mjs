@@ -465,6 +465,29 @@ try {
     return r.data.settings.target === 'es';
   });
   check('popup language save does not race recent-language storage', true);
+  await options.evaluate(async () => {
+    const s = (await chrome.runtime.sendMessage({ type: 'settings:get' })).data;
+    await chrome.runtime.sendMessage({
+      type: 'settings:patch',
+      revision: s.revision,
+      patch: { theme: 'dark' },
+    });
+  });
+  await popup.reload();
+  await popup.getByRole('button', { name: 'Start studying', exact: true }).waitFor();
+  await aiAudit(popup, 'popup-dark');
+  await popup.screenshot({ path: 'test-results/popup-dark.png' });
+  await options.reload();
+  await options.getByRole('heading', { name: 'AI connection', exact: true }).waitFor();
+  await aiAudit(options, 'settings-dark');
+  await options.screenshot({ path: 'test-results/settings-dark.png', fullPage: true });
+  check(
+    'blue dark theme preserves the saved profile and target',
+    await options.evaluate(async () => {
+      const s = (await chrome.runtime.sendMessage({ type: 'settings:get' })).data;
+      return s.settings.target === 'es' && s.profiles.some((p) => p.name === 'Japanese practice');
+    }),
+  );
   check('no uncaught page exceptions', errors.length === 0);
   await writeFile(
     'test-results/browser-results.json',

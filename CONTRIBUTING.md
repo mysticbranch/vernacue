@@ -9,6 +9,8 @@ bundled with esbuild; no runtime framework or backend is required.
 4. Run `npm run check` and `npm run test:browser` after installing Playwright
    Chromium (`npx playwright install chromium`). Linux may require
    `npx playwright install --with-deps chromium`.
+   Run `npm run test:popup` for the actual toolbar popup; a normal browser tab
+   does not reproduce Chrome's popup auto-sizing behavior.
 5. Verify keyboard focus, error recovery, at least one RTL/CJK case, and privacy
    implications. Note manual checks that were not performed.
 6. Update docs when behavior, data handling, permissions, or compatibility changes.

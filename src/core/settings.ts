@@ -26,7 +26,7 @@ export const appearance: Appearance = {
   width: 86,
   padding: 12,
   text: '#ffffff',
-  background: '#151a18',
+  background: '#142f53',
   opacity: 96,
   position: 'bottom',
   lineHeight: 1.5,
@@ -49,7 +49,7 @@ export const defaults: Settings = {
   voice: '',
   cache: true,
   appearance,
-  theme: 'system',
+  theme: 'light',
 };
 const num = (v: unknown, base: number, min: number, max: number) =>
   typeof v === 'number' && Number.isFinite(v) ? Math.min(max, Math.max(min, v)) : base;
@@ -86,7 +86,7 @@ export function normalizeSettings(value: unknown): Settings {
     remoteVoices: bool(s.remoteVoices, false),
     voice: str(s.voice),
     cache: bool(s.cache, true),
-    theme: ['light', 'dark'].includes(String(s.theme)) ? (s.theme as 'light' | 'dark') : 'system',
+    theme: ['light', 'dark', 'system'].includes(String(s.theme)) ? s.theme! : 'light',
     appearance: {
       size: num(a.size, 24, 16, 56),
       width: num(a.width, 86, 40, 96),

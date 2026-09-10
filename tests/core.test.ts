@@ -21,6 +21,19 @@ const cue = (id: string, startMs: number, endMs: number, text: string): Cue => (
   text,
   members: [id],
 });
+test('blue defaults do not replace saved custom styles or theme preferences', () => {
+  assert.equal(initialStore().settings.theme, 'light');
+  assert.equal(initialStore().settings.appearance.background, '#142f53');
+  for (const theme of ['system', 'dark', 'light']) {
+    const saved = normalizeSettings({
+      theme,
+      appearance: { background: '#151a18', text: '#eeeeee', size: 32 },
+    });
+    assert.equal(saved.theme, theme);
+    assert.equal(saved.appearance.background, '#151a18');
+    assert.equal(saved.appearance.size, 32);
+  }
+});
 const request: AIRequest = {
   id: 'test',
   operation: 'translate',

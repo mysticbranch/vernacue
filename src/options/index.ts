@@ -9,6 +9,7 @@ import {
 } from '../core/settings';
 import type { Store, Settings, Provider, AIRequest, AIResult } from '../core/types';
 import { languageName } from '../core/languages';
+import { brand } from '../ui/brand';
 const app = document.getElementById('app')!,
   status = statusNode();
 let store: Store;
@@ -641,7 +642,10 @@ async function init() {
   store = await message('settings:get');
   document.documentElement.dataset.theme = store.settings.theme;
   const h = el('header', { class: 'header' });
-  h.append(el('h1', {}, 'Vernacue'), el('span', { class: 'hint' }, 'Your language. Your pace.'));
+  h.append(
+    brand('Make yourself at home.'),
+    el('span', { class: 'header-context' }, 'Settings & preferences'),
+  );
   app.append(h, status);
   const layout = el('div', { class: 'settings-layout' }),
     nav = el('nav', { 'aria-label': 'Settings sections' }),
@@ -661,6 +665,8 @@ async function init() {
       location.hash = id;
     });
     if (id === 'learning') b.setAttribute('aria-current', 'page');
+    b.dataset.step = String(nav.children.length + 1).padStart(2, '0');
+    b.setAttribute('aria-label', name);
     nav.append(b);
     content.append(section);
   }
@@ -670,7 +676,7 @@ async function init() {
     el(
       'p',
       { class: 'hint' },
-      'Vernacue 0.1.0 · Settings stay in this browser. No account or local server required.',
+      `Vernacue ${chrome.runtime.getManifest().version} · Settings stay in this browser. No account or local server required.`,
     ),
   );
   const hash = location.hash.slice(1);
